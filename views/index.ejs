@@ -64,8 +64,9 @@
     <% if (typeof shortUrl !== 'undefined' && shortUrl) { %>
         <div class="result">
             <h2>Shortened URL:</h2>
-            <p><a href="<%= shortUrl %>"><%= shortUrl %></a></p>
-            <p>Original URL: <%= originalUrl %></p>
+            <p><a href="<%= shortUrl %>" target="_blank"><%= shortUrl %></a></p>
+            <h2>Original URL:</h2>
+            <p><%= originalUrl %></p>
         </div>
     <% } %>
 </body>

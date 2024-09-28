@@ -5,7 +5,7 @@ const { saveUrl, getOriginalUrl } = require('./urlStore');
 
 async function shortenURL(req, res) {
   const { originalUrl } = req.body;
-  const baseUrl = 'https://' + config['host'] + ':' + config['port'];
+  const baseUrl = 'https://' + config['host'];
 
   if (!validUrl.isUri(baseUrl)) {
     res.writeHead(400, { 'Content-Type': 'application/json' });

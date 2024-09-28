@@ -7,6 +7,10 @@ async function shortenURL(req, res) {
   const { originalUrl } = req.body;
   const baseUrl = 'https://' + config['host'];
 
+  console.log("In shorten");
+  console.log(originalUrl);
+  
+
   if (!validUrl.isUri(baseUrl)) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ message: 'Invalid base URL' }));
@@ -18,22 +22,18 @@ async function shortenURL(req, res) {
     try {
         const existingShortUrl = getOriginalUrl(originalUrl);
       if (existingShortUrl) {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ originalUrl, shortUrl: existingShortUrl }));
+        return res.render('index', { originalUrl: originalUrl, shortUrl: existingShortUrl });
       } else {
         const shortUrl = `${baseUrl}/${urlCode}`;
         saveUrl(urlCode, originalUrl);
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ originalUrl, shortUrl }));
+        return res.render('index', { originalUrl: originalUrl, shortUrl: shortUrl });
       }
     } catch (err) {
       console.log(err);
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ message: 'Server error' }));
+      return res.status(500).json({ message: 'Server error' });
     }
   } else {
-    res.writeHead(400, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ message: 'Invalid URL' }));
+    return res.status(500).json({ message: 'Server error' });
   }
 };
 

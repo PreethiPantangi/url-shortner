@@ -4,6 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="url"] {
+            width: 60%;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .result a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .result a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>URL Shortener</h1>
@@ -12,9 +62,11 @@
         <button type="submit">Shorten</button>
     </form>
     <% if (typeof shortUrl !== 'undefined' && shortUrl) { %>
-        <h2>Shortened URL:</h2>
-        <p><a href="<%= shortUrl %>"><%= shortUrl %></a></p>
-        <p>Original URL: <%= originalUrl %></p>
+        <div class="result">
+            <h2>Shortened URL:</h2>
+            <p><a href="<%= shortUrl %>"><%= shortUrl %></a></p>
+            <p>Original URL: <%= originalUrl %></p>
+        </div>
     <% } %>
 </body>
 </html>
